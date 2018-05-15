@@ -1,36 +1,36 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { async } from '@angular/core/testing';
 import { of } from 'rxjs';
 
-import { HeroSearchComponent } from '../hero-search/hero-search.component';
-import { HeroService } from '../hero.service';
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
 
   beforeEach(async(() => {
     const svcSpy = jasmine.createSpyObj('heroSvc', ['getHeroes']);
-    svcSpy.getHeroes.and.returnValue(of([]));
+    svcSpy.getHeroes.and.returnValue(of(
+      [
+        {id: 0, name: 'Atta Boy'},
+        {id: 1, name: 'Thatsmy Girl'},
+      ]));
 
-    TestBed.configureTestingModule({
-      declarations: [DashboardComponent, HeroSearchComponent],
-      imports: [RouterTestingModule],
-      providers: [
-        { provide: HeroService, useValue: svcSpy }
-      ]
-    })
-      .compileComponents();
+    // TestBed.configureTestingModule({
+    //   imports: [RouterTestingModule],
+    //   providers: [
+    //     DashboardComponent,
+    //     { provide: HeroService, useValue: svcSpy }
+    //   ]
+    // });
+    component = new DashboardComponent(svcSpy);
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  // beforeEach(() => {
+  //   component = TestBed.get(DashboardComponent);
+  // });
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+    component.ngOnInit();
+    expect(component.heroes).toEqual([{id: 1, name: 'Thatsmy Girl'}]);
   });
 });
