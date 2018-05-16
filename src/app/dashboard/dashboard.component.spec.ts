@@ -1,8 +1,8 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 
-import { HeroSearchComponent } from '../hero-search/hero-search.component';
 import { HeroService } from '../hero.service';
 import { DashboardComponent } from './dashboard.component';
 
@@ -15,11 +15,12 @@ describe('DashboardComponent', () => {
     svcSpy.getHeroes.and.returnValue(of([]));
 
     TestBed.configureTestingModule({
-      declarations: [DashboardComponent, HeroSearchComponent],
+      declarations: [DashboardComponent],
       imports: [RouterTestingModule],
       providers: [
         { provide: HeroService, useValue: svcSpy }
-      ]
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
       .compileComponents();
   }));
