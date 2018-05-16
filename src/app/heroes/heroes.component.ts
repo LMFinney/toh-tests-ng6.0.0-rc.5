@@ -18,6 +18,8 @@ export class HeroesComponent implements OnInit {
   }
 
   getHeroes(): void {
+    console.log({svc: this.heroService});
+    console.log({returns: this.heroService.getHeroes()});
     this.heroService.getHeroes()
     .subscribe(heroes => this.heroes = heroes);
   }
