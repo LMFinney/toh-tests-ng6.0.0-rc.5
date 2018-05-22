@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
@@ -16,11 +16,11 @@ describe('DashboardComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [DashboardComponent],
-      imports: [RouterTestingModule],
+      // imports: [RouterTestingModule],
       providers: [
         { provide: HeroService, useValue: svcSpy }
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [ NO_ERRORS_SCHEMA ]
     })
       .compileComponents();
   }));
